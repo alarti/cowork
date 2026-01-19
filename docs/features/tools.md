@@ -238,7 +238,7 @@ Execute shell commands.
 - Has timeout protection
 - Returns exit code
 
-!!! warning "Security"
+::: warning Security
     Commands run on your local system. Be cautious with destructive commands.
 
 ---
@@ -381,37 +381,37 @@ sequenceDiagram
 
 ### File Operations
 
-!!! tip "Read Before Edit"
+::: tip Read Before Edit
     Always read a file before editing to understand its current state.
 
-!!! tip "Use Exact Matches"
+::: tip Use Exact Matches
     For `edit_file`, use the exact text including whitespace.
 
-!!! tip "Prefer edit_file"
+::: tip Prefer edit_file
     Use `edit_file` for modifications, `write_file` only for new files.
 
 ### Search Operations
 
-!!! tip "Start Broad"
+::: tip Start Broad
     Use `glob` to find files, then `grep` to search within them.
 
-!!! tip "Use Specific Patterns"
+::: tip Use Specific Patterns
     More specific patterns are faster and produce fewer results.
 
 ### Command Execution
 
-!!! tip "Prefer Docker"
+::: tip Prefer Docker
     Use `docker_run` for risky or experimental commands.
 
-!!! tip "Check Exit Codes"
+::: tip Check Exit Codes
     Tool results include exit codes for command success/failure.
 
 ### Performance
 
-!!! tip "Batch Operations"
+::: tip Batch Operations
     Combine related operations to reduce API calls.
 
-!!! tip "Use Working Directory"
+::: tip Use Working Directory
     Set `cwd` to avoid long absolute paths.
 
 ## Tool Configuration

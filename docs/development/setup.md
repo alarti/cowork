@@ -15,7 +15,7 @@ This guide covers setting up a development environment for contributing to Kuse 
 
 ### Platform-Specific Setup
 
-=== "macOS"
+**macOS:**
 
     ```bash
     # Install Homebrew
@@ -31,7 +31,7 @@ This guide covers setting up a development environment for contributing to Kuse 
     brew install --cask docker
     ```
 
-=== "Windows"
+**Windows:**
 
     1. Install [Node.js](https://nodejs.org/) (LTS version)
     2. Install pnpm: `npm install -g pnpm`
@@ -40,7 +40,7 @@ This guide covers setting up a development environment for contributing to Kuse 
     5. Install [Docker Desktop](https://www.docker.com/products/docker-desktop)
     6. Install Tauri CLI: `cargo install tauri-cli`
 
-=== "Linux (Ubuntu/Debian)"
+**Linux (Ubuntu/Debian):**
 
     ```bash
     # Install system dependencies
@@ -116,7 +116,7 @@ pnpm dev
 
 Access at `http://localhost:1420`
 
-!!! note "Web Mode Limitations"
+::: info Web Mode Limitations
     Without Tauri, some features are unavailable:
     - Tool execution
     - Docker integration
@@ -347,7 +347,7 @@ pub fn ProcessItem(item: Item) -> Output { }
 
 ## Troubleshooting
 
-??? question "Cargo build fails"
+### Cargo build fails
 
     ```bash
     # Clean and rebuild
@@ -356,7 +356,7 @@ pub fn ProcessItem(item: Item) -> Output { }
     cargo build
     ```
 
-??? question "pnpm install fails"
+### pnpm install fails
 
     ```bash
     # Clear cache and reinstall
@@ -365,13 +365,13 @@ pub fn ProcessItem(item: Item) -> Output { }
     pnpm install
     ```
 
-??? question "Tauri dev crashes"
+### Tauri dev crashes
 
     1. Check Rust compilation: `cd src-tauri && cargo check`
     2. Check Vite: `pnpm dev`
     3. Check logs for errors
 
-??? question "Docker not working"
+### Docker not working
 
     1. Ensure Docker Desktop is running
     2. Check Docker socket: `docker ps`

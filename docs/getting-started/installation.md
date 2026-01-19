@@ -38,49 +38,48 @@ The easiest way to install Kuse Cowork is to download pre-built binaries from Gi
 
 #### Prerequisites
 
-Before building from source, ensure you have:
+::: code-group
 
-=== "macOS"
+```bash [macOS]
+# Install Homebrew if not installed
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-    ```bash
-    # Install Homebrew if not installed
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# Install dependencies
+brew install node pnpm rust
 
-    # Install dependencies
-    brew install node pnpm rust
+# Install Tauri CLI
+cargo install tauri-cli
+```
 
-    # Install Tauri CLI
-    cargo install tauri-cli
-    ```
+```bash [Linux]
+# Install dependencies (Ubuntu/Debian)
+sudo apt update
+sudo apt install -y libwebkit2gtk-4.1-dev build-essential curl wget libssl-dev libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev
 
-=== "Windows"
+# Install Node.js
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs
 
-    1. Install [Node.js](https://nodejs.org/) (v18+)
-    2. Install [pnpm](https://pnpm.io/installation): `npm install -g pnpm`
-    3. Install [Rust](https://rustup.rs/)
-    4. Install [Visual Studio Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
-    5. Install Tauri CLI: `cargo install tauri-cli`
+# Install pnpm
+npm install -g pnpm
 
-=== "Linux"
+# Install Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-    ```bash
-    # Install dependencies (Ubuntu/Debian)
-    sudo apt update
-    sudo apt install -y libwebkit2gtk-4.1-dev build-essential curl wget libssl-dev libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev
+# Install Tauri CLI
+cargo install tauri-cli
+```
 
-    # Install Node.js
-    curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-    sudo apt install -y nodejs
+```powershell [Windows]
+# Install via winget or download manually:
+# 1. Node.js: https://nodejs.org/ (v18+)
+# 2. pnpm: npm install -g pnpm
+# 3. Rust: https://rustup.rs/
+# 4. Visual Studio Build Tools with C++ workload
+# 5. Tauri CLI: cargo install tauri-cli
+```
 
-    # Install pnpm
-    npm install -g pnpm
-
-    # Install Rust
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
-    # Install Tauri CLI
-    cargo install tauri-cli
-    ```
+:::
 
 #### Build Steps
 
@@ -105,33 +104,37 @@ The built application will be in `src-tauri/target/release/bundle/`.
 
 Kuse Cowork uses Docker for secure command execution. Make sure Docker is installed and running:
 
-=== "macOS"
+::: code-group
 
-    1. Download and install [Docker Desktop for Mac](https://www.docker.com/products/docker-desktop)
-    2. Start Docker Desktop
-    3. Verify installation: `docker run hello-world`
+```bash [macOS]
+# Download Docker Desktop from https://www.docker.com/products/docker-desktop
+# Start Docker Desktop
+# Verify installation:
+docker run hello-world
+```
 
-=== "Windows"
+```bash [Linux]
+# Install Docker Engine
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
 
-    1. Download and install [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop)
-    2. Enable WSL 2 backend (recommended)
-    3. Start Docker Desktop
-    4. Verify installation: `docker run hello-world`
+# Add user to docker group
+sudo usermod -aG docker $USER
+newgrp docker
 
-=== "Linux"
+# Verify installation
+docker run hello-world
+```
 
-    ```bash
-    # Install Docker Engine
-    curl -fsSL https://get.docker.com -o get-docker.sh
-    sudo sh get-docker.sh
+```powershell [Windows]
+# Download Docker Desktop from https://www.docker.com/products/docker-desktop
+# Enable WSL 2 backend (recommended)
+# Start Docker Desktop
+# Verify installation:
+docker run hello-world
+```
 
-    # Add user to docker group
-    sudo usermod -aG docker $USER
-    newgrp docker
-
-    # Verify installation
-    docker run hello-world
-    ```
+:::
 
 ## Verifying Installation
 
@@ -143,27 +146,26 @@ After installation, launch Kuse Cowork and verify:
 
 ## Troubleshooting
 
-### Common Issues
+### Application won't start on macOS
 
-??? question "Application won't start on macOS"
+If you see "App is damaged and can't be opened", run:
 
-    If you see "App is damaged and can't be opened", run:
-    ```bash
-    xattr -cr /Applications/Kuse\ Cowork.app
-    ```
+```bash
+xattr -cr /Applications/Kuse\ Cowork.app
+```
 
-??? question "Docker connection failed"
+### Docker connection failed
 
-    1. Ensure Docker Desktop is running
-    2. Check Docker socket permissions (Linux):
-       ```bash
-       sudo chmod 666 /var/run/docker.sock
-       ```
-    3. Restart Kuse Cowork
+1. Ensure Docker Desktop is running
+2. Check Docker socket permissions (Linux):
+   ```bash
+   sudo chmod 666 /var/run/docker.sock
+   ```
+3. Restart Kuse Cowork
 
-??? question "Build fails on Windows"
+### Build fails on Windows
 
-    Ensure Visual Studio Build Tools are installed with "C++ build tools" workload.
+Ensure Visual Studio Build Tools are installed with "C++ build tools" workload.
 
 ## Next Steps
 

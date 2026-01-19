@@ -315,7 +315,7 @@ Connect to internal services:
 
 ### Network Security
 
-!!! warning "Local Servers Only"
+::: warning Local Servers Only
     Only connect to trusted MCP servers. Malicious servers can execute arbitrary actions.
 
 ### Token Management
@@ -332,26 +332,26 @@ Connect to internal services:
 
 ## Troubleshooting
 
-??? question "Server not connecting"
+### Server not connecting
 
     1. Verify URL is correct
     2. Check server is running
     3. Confirm network accessibility
     4. Review authentication config
 
-??? question "Tools not appearing"
+### Tools not appearing
 
     1. Check server status is "Connected"
     2. Verify `/tools` endpoint returns valid response
     3. Restart Kuse Cowork
 
-??? question "Tool calls failing"
+### Tool calls failing
 
     1. Check tool input matches schema
     2. Review server logs
     3. Verify authentication is valid
 
-??? question "OAuth flow not completing"
+### OAuth flow not completing
 
     1. Check redirect URL configuration
     2. Verify client ID/secret

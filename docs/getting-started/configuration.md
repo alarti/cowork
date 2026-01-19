@@ -34,38 +34,39 @@ API keys are stored locally in an encrypted SQLite database. Keys are never sent
 ~/.kuse-cowork/settings.db
 ```
 
-!!! security "API Key Safety"
-    - Keys are stored locally only
-    - No telemetry or analytics
-    - Keys are passed directly to provider APIs
+::: info API Key Safety
+- Keys are stored locally only
+- No telemetry or analytics
+- Keys are passed directly to provider APIs
+:::
 
 ### Model Selection
 
 Each provider offers multiple models:
 
-=== "Anthropic"
+**Anthropic:**
 
-    | Model | Description |
-    |-------|-------------|
-    | claude-opus-4-5-20251101 | Most capable |
-    | claude-sonnet-4-5-20250929 | Balanced (recommended) |
+| Model | Description |
+|-------|-------------|
+| claude-opus-4-5-20251101 | Most capable |
+| claude-sonnet-4-5-20250929 | Balanced (recommended) |
 
-=== "OpenAI"
+**OpenAI:**
 
-    | Model | Description |
-    |-------|-------------|
-    | gpt-5 | Latest flagship |
-    | gpt-5-mini | Fast and efficient |
-    | gpt-4o | Multimodal |
+| Model | Description |
+|-------|-------------|
+| gpt-5 | Latest flagship |
+| gpt-5-mini | Fast and efficient |
+| gpt-4o | Multimodal |
 
-=== "Local (Ollama)"
+**Local (Ollama):**
 
-    | Model | Description |
-    |-------|-------------|
-    | llama3.3:latest | Meta's latest open source |
-    | qwen2.5:latest | Good for Chinese |
-    | codellama:latest | Code-specialized |
-    | deepseek-r1:latest | Strong reasoning |
+| Model | Description |
+|-------|-------------|
+| llama3.3:latest | Meta's latest open source |
+| qwen2.5:latest | Good for Chinese |
+| codellama:latest | Code-specialized |
+| deepseek-r1:latest | Strong reasoning |
 
 ### Custom Endpoints
 
@@ -94,8 +95,9 @@ Controls response randomness:
 - **0.7**: Balanced (default)
 - **1.0**: Creative, varied
 
-!!! note "Reasoning Models"
-    GPT-5, o1, and o3 models don't support custom temperature.
+::: info Reasoning Models
+GPT-5, o1, and o3 models don't support custom temperature.
+:::
 
 ## Project Configuration
 
@@ -107,8 +109,9 @@ Set the working directory for tasks:
 2. Browse to your project root
 3. The agent will have access to all files in this directory
 
-!!! warning "Docker Mounting"
-    The project folder is mounted at `/workspace` in Docker containers.
+::: warning Docker Mounting
+The project folder is mounted at `/workspace` in Docker containers.
+:::
 
 ### Skills Directory
 
@@ -208,7 +211,8 @@ For advanced configuration, environment variables can be used:
 
 Settings can also be configured via JSON:
 
-```json title="~/.kuse-cowork/config.json"
+```json
+// ~/.kuse-cowork/config.json
 {
   "defaultProvider": "anthropic",
   "defaultModel": "claude-sonnet-4-5-20250929",

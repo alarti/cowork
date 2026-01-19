@@ -9,24 +9,28 @@ After launching Kuse Cowork, you need to configure at least one AI provider.
 1. Click the **Settings** icon (⚙️) in the top-right corner
 2. Select your preferred AI provider:
 
-=== "Anthropic Claude"
+::: code-group
 
-    1. Get your API key from [Anthropic Console](https://console.anthropic.com/)
-    2. Enter your API key
-    3. Select a model (e.g., `claude-sonnet-4-5-20250929`)
+```text [Anthropic Claude]
+1. Get your API key from https://console.anthropic.com/
+2. Enter your API key
+3. Select a model (e.g., claude-sonnet-4-5-20250929)
+```
 
-=== "OpenAI"
+```text [OpenAI]
+1. Get your API key from https://platform.openai.com/
+2. Enter your API key
+3. Select a model (e.g., gpt-4o)
+```
 
-    1. Get your API key from [OpenAI Platform](https://platform.openai.com/)
-    2. Enter your API key
-    3. Select a model (e.g., `gpt-4o`)
+```text [Local (Ollama)]
+1. Install Ollama from https://ollama.ai/
+2. Pull a model: ollama pull llama3.3:latest
+3. Select "Ollama (Local)" as provider
+4. No API key needed!
+```
 
-=== "Local (Ollama)"
-
-    1. Install [Ollama](https://ollama.ai/)
-    2. Pull a model: `ollama pull llama3.3:latest`
-    3. Select "Ollama (Local)" as provider
-    4. No API key needed!
+:::
 
 3. Click **Test Connection** to verify
 4. Close the settings panel
@@ -39,10 +43,10 @@ The simplest way to use Kuse Cowork is through the Chat interface:
 2. Type your message and press Enter
 3. The AI will respond with helpful information
 
-!!! example "Try asking"
-    - "What can you help me with?"
-    - "Explain how to use Docker"
-    - "Write a Python script that prints Hello World"
+**Try asking:**
+- "What can you help me with?"
+- "Explain how to use Docker"
+- "Write a Python script that prints Hello World"
 
 ## Step 3: Create a Task with Agent
 
@@ -52,10 +56,10 @@ For more complex, multi-step tasks, use the Agent feature:
 2. Click **New Task**
 3. Enter a task description:
 
-!!! example "Example tasks"
-    - "Create a new React component for a login form"
-    - "Find and fix the bug in src/utils.ts"
-    - "Add unit tests for the UserService class"
+**Example tasks:**
+- "Create a new React component for a login form"
+- "Find and fix the bug in src/utils.ts"
+- "Add unit tests for the UserService class"
 
 4. Optionally select a **Project Folder** to give the agent access to your codebase
 5. Click **Start**
@@ -77,8 +81,9 @@ For enhanced functionality, enable tools in Chat mode:
    - Execute commands (in Docker for safety)
    - Edit files with your approval
 
-!!! warning "Project Folder Required"
-    Tool-enabled chat requires selecting a project folder first.
+::: warning
+Tool-enabled chat requires selecting a project folder first.
+:::
 
 ## Example Workflows
 
@@ -138,17 +143,21 @@ Agent: I'll create a user registration endpoint...
 
 ## Tips for Better Results
 
-!!! tip "Be Specific"
-    Instead of "fix the bug", try "fix the TypeError in handleSubmit function in src/Form.tsx"
+::: tip Be Specific
+Instead of "fix the bug", try "fix the TypeError in handleSubmit function in src/Form.tsx"
+:::
 
-!!! tip "Provide Context"
-    Select a project folder so the agent can read your actual code.
+::: tip Provide Context
+Select a project folder so the agent can read your actual code.
+:::
 
-!!! tip "Use Tool Mode for Actions"
-    Enable tools when you want the AI to actually read files or run commands.
+::: tip Use Tool Mode for Actions
+Enable tools when you want the AI to actually read files or run commands.
+:::
 
-!!! tip "Break Down Large Tasks"
-    For complex projects, create multiple focused tasks rather than one large one.
+::: tip Break Down Large Tasks
+For complex projects, create multiple focused tasks rather than one large one.
+:::
 
 ## Next Steps
 

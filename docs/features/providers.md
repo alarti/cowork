@@ -38,7 +38,7 @@ Support for GPT models including the latest GPT-5 series.
 | `gpt-4o` | Multimodal | Chat Completions |
 | `gpt-4-turbo` | Fast GPT-4 | Chat Completions |
 
-!!! note "GPT-5 Responses API"
+::: info GPT-5 Responses API
     GPT-5 models use OpenAI's new Responses API format, which is automatically detected and handled.
 
 Get your API key at [platform.openai.com](https://platform.openai.com/)
@@ -293,20 +293,20 @@ Some models support extended thinking/reasoning:
 
 ## Troubleshooting
 
-??? question "Connection test fails"
+### Connection test fails
 
     1. Verify API key is correct
     2. Check base URL format
     3. Ensure network connectivity
     4. Check provider status page
 
-??? question "Model not found"
+### Model not found
 
     1. Verify model ID spelling
     2. Check if model is available in your plan
     3. For Ollama, ensure model is pulled
 
-??? question "Rate limit errors"
+### Rate limit errors
 
     1. Reduce request frequency
     2. Upgrade provider plan

@@ -4,7 +4,7 @@ Kuse Cowork is a comprehensive AI agent framework designed for developers who ne
 
 ## Core Features
 
-### :material-cloud-outline: Multi-Provider AI Support
+###  Multi-Provider AI Support
 
 Connect to any major AI provider or run models locally:
 
@@ -15,7 +15,7 @@ Connect to any major AI provider or run models locally:
 
 [Learn more →](providers.md)
 
-### :material-robot: Autonomous Agent System
+###  Autonomous Agent System
 
 An intelligent agent that can plan and execute complex tasks:
 
@@ -26,7 +26,7 @@ An intelligent agent that can plan and execute complex tasks:
 
 [Learn more →](agent.md)
 
-### :material-tools: Comprehensive Tool Suite
+###  Comprehensive Tool Suite
 
 Built-in tools for common development tasks:
 
@@ -43,7 +43,7 @@ Built-in tools for common development tasks:
 
 [Learn more →](tools.md)
 
-### :material-puzzle: Extensible Skills System
+###  Extensible Skills System
 
 Extend agent capabilities with skills:
 
@@ -54,7 +54,7 @@ Extend agent capabilities with skills:
 
 [Learn more →](skills.md)
 
-### :material-connection: MCP Protocol Support
+###  MCP Protocol Support
 
 Connect external tools and services:
 
@@ -71,28 +71,28 @@ Connect external tools and services:
 
 All data stays on your machine:
 
-- :material-database: SQLite for local storage
-- :material-key: API keys stored locally only
-- :material-eye-off: No telemetry or analytics
-- :material-cloud-off: Works offline with local models
+-  SQLite for local storage
+-  API keys stored locally only
+-  No telemetry or analytics
+-  Works offline with local models
 
 ### Docker Isolation
 
 Commands execute in isolated containers:
 
-- :material-shield: Sandboxed execution environment
-- :material-folder: Controlled filesystem access
-- :material-timer: Resource limits and timeouts
-- :material-refresh: Clean container per execution
+-  Sandboxed execution environment
+-  Controlled filesystem access
+-  Resource limits and timeouts
+-  Clean container per execution
 
 ### BYOK (Bring Your Own Key)
 
 Complete control over your AI access:
 
-- :material-key-variant: Use your own API keys
-- :material-server: Connect to your own endpoints
-- :material-cash: Pay only for what you use
-- :material-swap-horizontal: Switch providers anytime
+-  Use your own API keys
+-  Connect to your own endpoints
+-  Pay only for what you use
+-  Switch providers anytime
 
 ## User Interface Features
 
@@ -167,9 +167,9 @@ Optimized for developer workflows:
 
 Runs on all major operating systems:
 
-- :material-apple: macOS (Intel and Apple Silicon)
-- :material-microsoft-windows: Windows 10/11
-- :material-linux: Linux (Ubuntu, Fedora, Arch)
+-  macOS (Intel and Apple Silicon)
+-  Windows 10/11
+-  Linux (Ubuntu, Fedora, Arch)
 
 ### Native Performance
 

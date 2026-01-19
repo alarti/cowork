@@ -31,7 +31,7 @@ Output locations:
 
 ### Platform-Specific Builds
 
-=== "macOS"
+**macOS:**
 
     ```bash
     # Build for current architecture
@@ -50,7 +50,7 @@ Output locations:
     - `.dmg` - Disk image
     - `.pkg` - Installer package
 
-=== "Windows"
+**Windows:**
 
     ```bash
     # Build for Windows
@@ -66,7 +66,7 @@ Output locations:
     - `.msi` - MSI installer
     - `*-setup.exe` - NSIS installer
 
-=== "Linux"
+**Linux:**
 
     ```bash
     # Build for Linux
@@ -304,7 +304,7 @@ codegen-units = 16   # Faster compilation
 
 ## Troubleshooting
 
-??? question "Build fails with missing libraries"
+### Build fails with missing libraries
 
     **Linux:**
     ```bash
@@ -316,19 +316,19 @@ codegen-units = 16   # Faster compilation
     xcode-select --install
     ```
 
-??? question "Code signing fails"
+### Code signing fails
 
     1. Verify certificate is valid
     2. Check keychain access
     3. Ensure correct identity name
 
-??? question "Build is too large"
+### Build is too large
 
     1. Enable LTO in release profile
     2. Use `opt-level = "s"` or `"z"`
     3. Strip debug symbols
 
-??? question "Cross-compilation fails"
+### Cross-compilation fails
 
     1. Install target: `rustup target add <target>`
     2. Install cross-compiler toolchain

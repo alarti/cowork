@@ -265,32 +265,32 @@ If extraction fails:
 
 ### Design Guidelines
 
-!!! tip "Single Responsibility"
+::: tip Single Responsibility
     Each skill should do one thing well.
 
-!!! tip "Clear Triggers"
+::: tip Clear Triggers
     Define specific, unambiguous trigger phrases.
 
-!!! tip "Detailed Instructions"
+::: tip Detailed Instructions
     Provide step-by-step instructions the agent can follow.
 
 ### Script Guidelines
 
-!!! tip "Standalone Scripts"
+::: tip Standalone Scripts
     Scripts should work independently with clear input/output.
 
-!!! tip "Error Messages"
+::: tip Error Messages
     Provide helpful error messages for common issues.
 
-!!! tip "Standard I/O"
+::: tip Standard I/O
     Use stdin/stdout for data flow when possible.
 
 ### Documentation
 
-!!! tip "Include Examples"
+::: tip Include Examples
     Show concrete examples of skill usage.
 
-!!! tip "Document Parameters"
+::: tip Document Parameters
     List all parameters with descriptions and defaults.
 
 ## Skill Locations
@@ -354,19 +354,19 @@ Future versions may support:
 
 ## Troubleshooting
 
-??? question "Skill not detected"
+### Skill not detected
 
     1. Verify SKILL.md exists in skill directory
     2. Check skill directory is in `~/.kuse-cowork/skills/`
     3. Restart Kuse Cowork
 
-??? question "Script fails to run"
+### Script fails to run
 
     1. Check script has execute permissions
     2. Verify shebang line (`#!/usr/bin/env python3`)
     3. Test script manually in Docker
 
-??? question "Dependencies not found"
+### Dependencies not found
 
     1. Install deps in Docker: `docker_run pip install <package>`
     2. Add installation to script

@@ -218,15 +218,15 @@ When tools fail, the agent:
 
 ### Writing Effective Prompts
 
-!!! tip "Be Specific"
+::: tip Be Specific
     ❌ "Fix the bug"
     ✅ "Fix the TypeError in handleSubmit function in src/components/Form.tsx"
 
-!!! tip "Provide Context"
+::: tip Provide Context
     ❌ "Add authentication"
     ✅ "Add JWT authentication to the /api/users endpoint using the existing auth middleware"
 
-!!! tip "Break Down Complex Tasks"
+::: tip Break Down Complex Tasks
     ❌ "Build a complete e-commerce site"
     ✅ "Create the product listing component with filtering"
 
