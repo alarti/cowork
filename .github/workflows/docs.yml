@@ -3,7 +3,7 @@ name: Deploy Docs
 on:
   push:
     branches:
-      - feat/jiaxi/ollama support
+      - feat/jiaxi/ollama-support
     paths:
       - 'docs/**'
       - 'mkdocs.yml'
