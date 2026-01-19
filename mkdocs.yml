@@ -1,7 +1,7 @@
 site_name: Kuse Cowork
 site_description: Open-source AI Agent Framework for Desktop
-site_url: https://kuse-cowork.github.io/kuse_cowork/
-repo_url: https://github.com/kuse-cowork/kuse_cowork
+site_url: https://kuse-ai.github.io/kuse_cowork/
+repo_url: https://github.com/kuse-ai/kuse_cowork
 repo_name: kuse_cowork
 
 theme:
