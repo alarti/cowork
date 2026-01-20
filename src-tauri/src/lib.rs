@@ -49,6 +49,7 @@ pub fn run() {
         .manage(app_state)
         .invoke_handler(tauri::generate_handler![
             commands::get_platform,
+            commands::get_statistics,
             commands::get_settings,
             commands::save_settings,
             commands::test_connection,
