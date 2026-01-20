@@ -4,18 +4,24 @@ use std::collections::HashMap;
 use tokio::sync::RwLock;
 use std::sync::Arc;
 
+/// Represents a connected MCP server client.
 pub struct MCPClient {
     http_client: HttpMcpClient,
     #[allow(dead_code)]
     url: String,
 }
 
+/// Manages connections to multiple MCP servers.
+/// Handles connection lifecycle, tool discovery, and execution.
 pub struct MCPManager {
+    /// Active client connections by server ID
     clients: Arc<RwLock<HashMap<String, MCPClient>>>,
+    /// Current status of each server
     server_status: Arc<RwLock<HashMap<String, MCPServerStatus>>>,
 }
 
 impl MCPManager {
+    /// Create a new MCP Manager
     pub fn new() -> Self {
         Self {
             clients: Arc::new(RwLock::new(HashMap::new())),
@@ -23,6 +29,8 @@ impl MCPManager {
         }
     }
 
+    /// Connect to an MCP server using the provided configuration.
+    /// Performs OAuth if configured, initializes the connection, and discovers tools.
     pub async fn connect_server(&self, config: &MCPServerConfig) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
         if !config.enabled {
             return Err("Server is not enabled".into());
@@ -122,6 +130,7 @@ impl MCPManager {
         }
     }
 
+    /// Executes a specific tool on a connected MCP server.
     pub async fn execute_tool(&self, call: &MCPToolCall) -> MCPToolResult {
         let clients = self.clients.read().await;
 

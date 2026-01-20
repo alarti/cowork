@@ -12,6 +12,10 @@ interface ToolExecution {
   status: "running" | "completed" | "error";
 }
 
+/**
+ * Agent component.
+ * Renders the chat interface for interacting with the AI agent, displaying messages, tool executions, and inputs.
+ */
 const Agent: Component = () => {
   const { isConfigured, toggleSettings } = useSettings();
 

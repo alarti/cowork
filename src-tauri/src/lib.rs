@@ -1,10 +1,18 @@
+/// Agent core logic and loop
 mod agent;
+/// Claude API client integration
 mod claude;
+/// Tauri commands exposed to frontend
 mod commands;
+/// Local SQLite database
 mod database;
+/// Generic LLM client (OpenAI, Google, etc)
 mod llm_client;
+/// Model Context Protocol implementation
 mod mcp;
+/// Skills system
 mod skills;
+/// Native tools (Bash, Docker, File System)
 mod tools;
 
 use commands::AppState;
@@ -13,6 +21,8 @@ use std::sync::Arc;
 use tauri::Manager;
 use tokio::sync::Mutex;
 
+/// Main entry point for the Tauri application.
+/// Initializes the database, MCP manager, and sets up Tauri handlers.
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     // Initialize database

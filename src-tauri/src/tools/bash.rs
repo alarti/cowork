@@ -6,7 +6,7 @@ use std::time::Duration;
 pub fn definition() -> ToolDefinition {
     ToolDefinition {
         name: "bash".to_string(),
-        description: "Execute a shell command. Use for running builds, tests, git commands, etc. Commands run in a sandboxed environment with timeouts.".to_string(),
+        description: "Execute a shell command directly on the host system. WARNING: This has full access to the user's system. Use with caution. For isolated execution, use docker tools.".to_string(),
         input_schema: json!({
             "type": "object",
             "properties": {
@@ -63,6 +63,9 @@ pub fn execute(
         .min(300);
 
     // Security check
+    // WARNING: This is a basic blacklist and is not sufficient for full security.
+    // Malicious agents could bypass this with obfuscation.
+    // It is strongly recommended to use the Docker container tools for untrusted tasks.
     for pattern in BLOCKED_PATTERNS {
         if command.contains(pattern) {
             return Err(format!(

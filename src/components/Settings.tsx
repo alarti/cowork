@@ -4,6 +4,10 @@ import { testConnection } from "../lib/tauri-api";
 import ModelSelector from "./ModelSelector";
 import "./Settings.css";
 
+/**
+ * Settings component.
+ * Allows configuration of AI models, API keys, and connection testing.
+ */
 const Settings: Component = () => {
   const { settings, updateSetting, toggleSettings } = useSettings();
   const [testing, setTesting] = createSignal(false);

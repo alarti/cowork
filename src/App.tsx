@@ -2,6 +2,11 @@ import { Component, Show, createSignal, onMount } from "solid-js";
 import { useSettings, loadSettings } from "./stores/settings";
 import { Task, TaskMessage, AgentEvent, listTasks, createTask, deleteTask, runTaskAgent, getTask, getTaskMessages } from "./lib/tauri-api";
 import AgentMain from "./components/AgentMain";
+
+/**
+ * Main application component.
+ * Handles routing between different views (Agent, Settings, MCP) and manages global task state.
+ */
 import Settings from "./components/Settings";
 import SkillsList from "./components/SkillsList";
 import MCPSettings from "./components/MCPSettings";

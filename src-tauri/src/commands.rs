@@ -8,9 +8,13 @@ use std::sync::Arc;
 use tauri::{command, Emitter, State, Window};
 use tokio::sync::Mutex;
 
+/// Shared application state
 pub struct AppState {
+    /// Local database connection
     pub db: Arc<Database>,
+    /// Claude client instance (deprecated in favor of generic LLMClient)
     pub claude_client: Mutex<Option<ClaudeClient>>,
+    /// Manager for Model Context Protocol connections
     pub mcp_manager: Arc<MCPManager>,
 }
 
