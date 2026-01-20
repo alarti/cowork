@@ -3,12 +3,19 @@ use crate::mcp::{MCPManager, MCPToolCall};
 use crate::tools;
 use std::sync::Arc;
 
+/// Executes tools requested by the AI agent.
+///
+/// This struct handles the dispatching of tool execution to the appropriate
+/// handler (internal tools, Docker tools, or MCP tools).
 pub struct ToolExecutor {
+    /// The root path of the project being worked on.
     project_path: Option<String>,
+    /// Optional manager for Model Context Protocol (MCP) tools.
     mcp_manager: Option<Arc<MCPManager>>,
 }
 
 impl ToolExecutor {
+    /// Creates a new ToolExecutor with an optional project path.
     pub fn new(project_path: Option<String>) -> Self {
         Self {
             project_path,
@@ -16,11 +23,18 @@ impl ToolExecutor {
         }
     }
 
+    /// Attaches an MCP manager to the executor, enabling MCP tool execution.
     pub fn with_mcp_manager(mut self, mcp_manager: Arc<MCPManager>) -> Self {
         self.mcp_manager = Some(mcp_manager);
         self
     }
 
+    /// Executes a tool based on the provided `ToolUse` definition.
+    ///
+    /// This method routes execution to:
+    /// - MCP tools (prefix `mcp_`)
+    /// - Docker tools (prefix `docker_`)
+    /// - Native tools (`read_file`, `bash`, etc.)
     pub async fn execute(&self, tool_use: &ToolUse) -> ToolResult {
         let project_path = self.project_path.as_deref();
 

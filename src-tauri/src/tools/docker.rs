@@ -124,6 +124,9 @@ async fn docker_run(docker: &Docker, tool_use: &ToolUse, project_path: &Option<S
     binds.push(format!("{}:/skills:ro", skills_dir.display()));
 
     // Add custom mounts
+    // SECURITY NOTE: We allow the agent/user to mount arbitrary paths.
+    // This allows the container to potentially modify host files if mounted read-write.
+    // Ideally, this should be restricted to the project path or specific safe directories.
     if let Some(mounts) = tool_use.input.get("mounts").and_then(|v| v.as_array()) {
         for mount in mounts {
             if let Some(m) = mount.as_str() {

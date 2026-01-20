@@ -15,6 +15,11 @@ const [activeConversationId, setActiveConversationId] = createSignal<string | nu
 const [messages, setMessages] = createSignal<Message[]>([]);
 const [isLoading, setIsLoading] = createSignal(false);
 
+/**
+ * Global chat store.
+ * Manages the state of conversations and messages.
+ */
+
 export async function loadConversations() {
   try {
     const convs = await listConversations();

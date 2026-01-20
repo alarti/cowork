@@ -2,7 +2,7 @@
 name = "kuse-cowork"
 version = "0.1.0"
 description = "Open-source Claude Cowork desktop app"
-authors = ["Kuse AI"]
+authors = ["alarti"]
 license = "MIT"
 repository = "https://github.com/kuse-ai/kuse-cowork"
 edition = "2021"

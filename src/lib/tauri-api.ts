@@ -2,6 +2,11 @@ import { invoke } from "@tauri-apps/api/core";
 import { listen, UnlistenFn } from "@tauri-apps/api/event";
 import { open } from "@tauri-apps/plugin-dialog";
 
+/**
+ * Type definitions matching the Rust backend structs.
+ * These ensure type safety when communicating via Tauri commands.
+ */
+
 // Types matching Rust structs
 export interface Settings {
   api_key: string;  // Legacy field, kept for compatibility
@@ -111,13 +116,19 @@ export type ChatEvent =
   | { type: "tool_end"; tool: string; result: string; success: boolean }
   | { type: "done"; final_text: string };
 
-// Check if running in Tauri (Tauri 2.x uses __TAURI_INTERNALS__)
+/**
+ * Checks if the application is running within the Tauri environment.
+ * Useful for providing web fallbacks during development.
+ */
 export function isTauri(): boolean {
   return typeof window !== "undefined" &&
     ("__TAURI__" in window || "__TAURI_INTERNALS__" in window);
 }
 
-// Settings API
+/**
+ * Fetches application settings from the backend.
+ * Includes fallback to localStorage for web development.
+ */
 export async function getSettings(): Promise<Settings> {
   if (!isTauri()) {
     // Fallback for web dev

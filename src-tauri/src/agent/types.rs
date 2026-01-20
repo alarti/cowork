@@ -1,32 +1,44 @@
 use serde::{Deserialize, Serialize};
 use crate::skills::{get_available_skills, get_skills_directory_path};
 
-/// Tool definition sent to Claude API
+/// Defines the schema and metadata for a tool available to the agent.
+/// This matches the format expected by the Claude/Anthropic API.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ToolDefinition {
+    /// The unique name of the tool.
     pub name: String,
+    /// A description of what the tool does, used by the LLM to understand when to use it.
     pub description: String,
+    /// The JSON Schema defining the expected input parameters.
     pub input_schema: serde_json::Value,
 }
 
-/// Tool use request from Claude
+/// Represents a request from the agent to use a specific tool.
+/// Parsed from the LLM's response.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ToolUse {
+    /// Unique identifier for this tool use call.
     pub id: String,
+    /// The name of the tool to execute.
     pub name: String,
+    /// The input parameters provided by the agent.
     pub input: serde_json::Value,
     /// Thought signature from Google Gemini 3 (required for function calling)
     #[serde(skip_serializing_if = "Option::is_none")]
     pub thought_signature: Option<String>,
 }
 
-/// Tool result to send back to Claude
+/// Represents the output of a tool execution to be sent back to the LLM.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ToolResult {
+    /// The type of the result block (usually "tool_result").
     #[serde(rename = "type")]
     pub result_type: String,
+    /// The ID of the tool use request this result corresponds to.
     pub tool_use_id: String,
+    /// The output content (stdout) or error message.
     pub content: String,
+    /// Whether the execution resulted in an error (optional).
     #[serde(skip_serializing_if = "Option::is_none")]
     pub is_error: Option<bool>,
     /// Thought signature from Google Gemini 3 (required for function response)
@@ -35,6 +47,7 @@ pub struct ToolResult {
 }
 
 impl ToolResult {
+    /// Creates a successful tool result.
     pub fn success(tool_use_id: String, content: String) -> Self {
         Self {
             result_type: "tool_result".to_string(),
@@ -45,6 +58,7 @@ impl ToolResult {
         }
     }
 
+    /// Creates an error tool result.
     pub fn error(tool_use_id: String, error: String) -> Self {
         Self {
             result_type: "tool_result".to_string(),
