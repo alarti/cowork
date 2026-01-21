@@ -23,6 +23,15 @@ pub struct CommandError {
     message: String,
 }
 
+#[derive(Debug, Serialize, Clone)]
+pub struct Statistics {
+    pub total_tasks: i64,
+    pub completed_tasks: i64,
+    pub failed_tasks: i64,
+    pub total_conversations: i64,
+    pub total_messages: i64,
+}
+
 impl From<crate::database::DbError> for CommandError {
     fn from(e: crate::database::DbError) -> Self {
         CommandError {
@@ -40,6 +49,30 @@ impl From<crate::claude::ClaudeError> for CommandError {
 }
 
 // Platform command
+#[command]
+pub fn get_statistics(state: State<'_, Arc<AppState>>) -> Result<Statistics, CommandError> {
+    let conn = state.db.conn.lock().map_err(|_| CommandError { message: "Database lock error".to_string() })?;
+
+    let total_tasks: i64 = conn.query_row("SELECT COUNT(*) FROM tasks", [], |row| row.get(0)).map_err(|e| CommandError { message: e.to_string() })?;
+
+    let completed_tasks: i64 = conn.query_row("SELECT COUNT(*) FROM tasks WHERE status = 'completed'", [], |row| row.get(0)).map_err(|e| CommandError { message: e.to_string() })?;
+
+    let failed_tasks: i64 = conn.query_row("SELECT COUNT(*) FROM tasks WHERE status = 'failed'", [], |row| row.get(0)).map_err(|e| CommandError { message: e.to_string() })?;
+
+    let total_conversations: i64 = conn.query_row("SELECT COUNT(*) FROM conversations", [], |row| row.get(0)).map_err(|e| CommandError { message: e.to_string() })?;
+
+    let chat_messages: i64 = conn.query_row("SELECT COUNT(*) FROM messages", [], |row| row.get(0)).map_err(|e| CommandError { message: e.to_string() })?;
+    let task_messages: i64 = conn.query_row("SELECT COUNT(*) FROM task_messages", [], |row| row.get(0)).map_err(|e| CommandError { message: e.to_string() })?;
+
+    Ok(Statistics {
+        total_tasks,
+        completed_tasks,
+        failed_tasks,
+        total_conversations,
+        total_messages: chat_messages + task_messages,
+    })
+}
+
 #[command]
 pub fn get_platform() -> String {
     #[cfg(target_os = "macos")]

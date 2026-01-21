@@ -102,6 +102,14 @@ export interface SkillMetadata {
   description: string;
 }
 
+export interface Statistics {
+  total_tasks: number;
+  completed_tasks: number;
+  failed_tasks: number;
+  total_conversations: number;
+  total_messages: number;
+}
+
 // Enhanced chat with tools
 export interface EnhancedChatRequest {
   conversation_id: string;
@@ -522,4 +530,17 @@ export async function getSkillsList(): Promise<SkillMetadata[]> {
     return [];
   }
   return invoke<SkillMetadata[]>("get_skills_list");
+}
+
+export async function getStatistics(): Promise<Statistics> {
+  if (!isTauri()) {
+    return {
+      total_tasks: 0,
+      completed_tasks: 0,
+      failed_tasks: 0,
+      total_conversations: 0,
+      total_messages: 0,
+    };
+  }
+  return invoke<Statistics>("get_statistics");
 }

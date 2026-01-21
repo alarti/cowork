@@ -10,6 +10,7 @@ interface TaskSidebarProps {
   onSettingsClick: () => void;
   onSkillsClick: () => void;
   onMCPClick: () => void;
+  onStatisticsClick: () => void;
 }
 
 const TaskSidebar: Component<TaskSidebarProps> = (props) => {
@@ -47,8 +48,11 @@ const TaskSidebar: Component<TaskSidebarProps> = (props) => {
     <aside class="task-sidebar">
       <div class="sidebar-header">
         <div class="logo-container">
-          <img src="/logo.png" alt="Kuse Cowork" class="logo-image" />
-          <h1 class="app-title">Kuse Cowork</h1>
+          <div class="app-icon">AC</div>
+          <div class="title-container">
+            <h1 class="app-title">Arce Cowork</h1>
+            <span class="attribution">By alarti</span>
+          </div>
         </div>
       </div>
 
@@ -92,18 +96,24 @@ const TaskSidebar: Component<TaskSidebarProps> = (props) => {
 
       <div class="sidebar-footer">
         <button
-          class="footer-btn primary-btn"
+            class="footer-btn ghost"
+            onClick={props.onStatisticsClick}
+        >
+            Statistics
+        </button>
+        <button
+          class="footer-btn ghost"
           onClick={props.onSkillsClick}
         >
           Skills
         </button>
         <button
-          class="footer-btn primary-btn"
+          class="footer-btn ghost"
           onClick={props.onMCPClick}
         >
           MCPs
         </button>
-        <button class="footer-btn primary-btn" onClick={props.onSettingsClick}>
+        <button class="footer-btn ghost" onClick={props.onSettingsClick}>
           Settings
         </button>
       </div>

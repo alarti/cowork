@@ -2,16 +2,12 @@ import { Component, Show, createSignal, onMount } from "solid-js";
 import { useSettings, loadSettings } from "./stores/settings";
 import { Task, TaskMessage, AgentEvent, listTasks, createTask, deleteTask, runTaskAgent, getTask, getTaskMessages } from "./lib/tauri-api";
 import AgentMain from "./components/AgentMain";
-
-/**
- * Main application component.
- * Handles routing between different views (Agent, Settings, MCP) and manages global task state.
- */
 import Settings from "./components/Settings";
 import SkillsList from "./components/SkillsList";
 import MCPSettings from "./components/MCPSettings";
 import TaskSidebar from "./components/TaskSidebar";
 import TaskPanel from "./components/TaskPanel";
+import Statistics from "./components/Statistics";
 
 interface ToolExecution {
   id: number;
@@ -25,6 +21,7 @@ const App: Component = () => {
   // UI state
   const [showSkills, setShowSkills] = createSignal(false);
   const [showMCP, setShowMCP] = createSignal(false);
+  const [showStatistics, setShowStatistics] = createSignal(false);
 
   // Task state
   const [tasks, setTasks] = createSignal<Task[]>([]);
@@ -39,37 +36,36 @@ const App: Component = () => {
     await refreshTasks();
   });
 
+  const resetViews = () => {
+    if (showSettings()) toggleSettings();
+    setShowSkills(false);
+    setShowMCP(false);
+    setShowStatistics(false);
+  };
+
   const toggleSkills = () => {
-    setShowSkills(!showSkills());
-    // Close other panels if open
-    if (showSettings()) {
-      toggleSettings();
-    }
-    if (showMCP()) {
-      setShowMCP(false);
-    }
+    const next = !showSkills();
+    resetViews();
+    setShowSkills(next);
   };
 
   const toggleMCP = () => {
-    setShowMCP(!showMCP());
-    // Close other panels if open
-    if (showSettings()) {
-      toggleSettings();
-    }
-    if (showSkills()) {
-      setShowSkills(false);
-    }
+    const next = !showMCP();
+    resetViews();
+    setShowMCP(next);
+  };
+
+  const toggleStatistics = () => {
+    const next = !showStatistics();
+    resetViews();
+    setShowStatistics(next);
   };
 
   const handleToggleSettings = () => {
-    // Close other panels if open
-    if (showSkills()) {
-      setShowSkills(false);
-    }
-    if (showMCP()) {
-      setShowMCP(false);
-    }
-    toggleSettings();
+    const next = !showSettings();
+    resetViews();
+    // Special case for settings hook
+    if (next) toggleSettings();
   };
 
   const refreshTasks = async () => {
@@ -199,6 +195,12 @@ const App: Component = () => {
   };
 
   const handleSelectTask = async (task: Task) => {
+    // Reset other views to show the agent
+    if (showSettings()) toggleSettings();
+    setShowSkills(false);
+    setShowMCP(false);
+    setShowStatistics(false);
+
     setActiveTask(task);
     setCurrentText("");
     setToolExecutions([]);
@@ -258,6 +260,8 @@ const App: Component = () => {
     setTaskMessages([]);
     setCurrentText("");
     setToolExecutions([]);
+    // Ensure we are in the main view
+    resetViews();
   };
 
   // Delete a task
@@ -284,6 +288,7 @@ const App: Component = () => {
           onSettingsClick={handleToggleSettings}
           onSkillsClick={toggleSkills}
           onMCPClick={toggleMCP}
+          onStatisticsClick={toggleStatistics}
         />
         <main class="main-content">
           <Show when={showSettings()}>
@@ -295,7 +300,10 @@ const App: Component = () => {
           <Show when={showMCP()}>
             <MCPSettings onClose={() => setShowMCP(false)} />
           </Show>
-          <Show when={!showSettings() && !showSkills() && !showMCP()}>
+          <Show when={showStatistics()}>
+            <Statistics />
+          </Show>
+          <Show when={!showSettings() && !showSkills() && !showMCP() && !showStatistics()}>
             <AgentMain
               onNewTask={handleNewTask}
               onContinueTask={handleContinueTask}
@@ -322,7 +330,7 @@ const App: Component = () => {
 const LoadingScreen: Component = () => (
   <div class="loading-screen">
     <div class="loading-content">
-      <h1>Kuse Cowork</h1>
+      <h1>Arce Cowork</h1>
       <p>Loading...</p>
     </div>
   </div>
